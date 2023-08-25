@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../model/quiz.dart';
+import 'quiz_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -8,6 +11,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Quiz> quizs = [
+    Quiz.fromMap({
+      'title': 'test',
+      'candidates': ['a', 'b', 'c', 'd'],
+      'answer': 0
+    }),
+    Quiz.fromMap({
+      'title': 'test',
+      'candidates': ['a', 'b', 'c', 'd'],
+      'answer': 0
+    }),
+    Quiz.fromMap({
+      'title': 'test',
+      'candidates': ['a', 'b', 'c', 'd'],
+      'answer': 0
+    }),
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -59,7 +80,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => QuizScreen(quizs: quizs),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepPurple,
                     ),
