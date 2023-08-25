@@ -13,18 +13,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Quiz> quizs = [
     Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
+      'title': 'test1',
+      'candidates': ['a1', 'b1', 'c1', 'd1'],
       'answer': 0
     }),
     Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
+      'title': 'test2',
+      'candidates': ['a2', 'b2', 'c2', 'd2'],
       'answer': 0
     }),
     Quiz.fromMap({
-      'title': 'test',
-      'candidates': ['a', 'b', 'c', 'd'],
+      'title': 'test3',
+      'candidates': ['a3', 'b3', 'c3', 'd3'],
       'answer': 0
     }),
   ];
