@@ -53,6 +53,21 @@ class _QuizScreenState extends State<QuizScreen> {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Colors.white),
       ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: EdgeInsets.fromLTRB(0, width * 0.024, 0, width * 0.024),
+            child: Text(
+              'Q${(_currentIndex + 1).toString()}.',
+              style: TextStyle(
+                fontSize: width * 0.06,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
