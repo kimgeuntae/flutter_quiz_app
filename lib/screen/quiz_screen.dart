@@ -1,3 +1,4 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
 import '../model/quiz.dart';
@@ -33,8 +34,25 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
           width: width * 0.85,
           height: height * 0.5,
+          child: Swiper(
+            physics: const NeverScrollableScrollPhysics(),
+            loop: false,
+            itemCount: widget.quizs.length,
+            itemBuilder: (context, index) {
+              return _buildQuizCard(widget.quizs[index], width, height);
+            },
+          ),
         ),
       ),
     ));
+  }
+
+  Widget _buildQuizCard(Quiz quiz, double width, double height) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.white),
+      ),
+    );
   }
 }
