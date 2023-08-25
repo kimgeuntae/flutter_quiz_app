@@ -22,6 +22,18 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.deepPurple,
           leading: Container(),
         ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Image.asset(
+                'images/quiz.jpeg',
+                width: width * 0.8,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
