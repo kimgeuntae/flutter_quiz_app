@@ -54,6 +54,28 @@ class ResultScreen extends StatelessWidget {
                 ),
                 width: width * 0.73,
                 height: height * 0.25,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(
+                          0, width * 0.048, 0, width * 0.012),
+                      child: Text(
+                        '수고하셨습니다!',
+                        style: TextStyle(
+                          fontSize: width * 0.055,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '당신의 점수는',
+                      style: TextStyle(
+                        fontSize: width * 0.048,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
