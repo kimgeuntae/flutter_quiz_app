@@ -69,7 +69,7 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
           Container(
             width: width * 0.8,
-            padding: EdgeInsets.only(top: width * 0.82),
+            padding: EdgeInsets.only(top: width * 0.012),
             child: AutoSizeText(
               quiz.title,
               textAlign: TextAlign.center,
@@ -80,6 +80,10 @@ class _QuizScreenState extends State<QuizScreen> {
               ),
             ),
           ),
+          Expanded(child: Container()),
+          Column(
+            children: [],
+          )
         ],
       ),
     );
