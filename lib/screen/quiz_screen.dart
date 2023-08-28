@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app_test/screen/result_screen.dart';
 
 import '../model/quiz.dart';
 import '../widget/candidate.dart';
@@ -15,7 +16,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  List<int> _answers = [-1, -1, -1, -1];
+  List<int> _answers = [-1, -1, -1];
   List<bool> _answerState = [false, false, false, false];
   int _currentIndex = 0;
   SwiperController _controller = SwiperController();
@@ -106,6 +107,13 @@ class _QuizScreenState extends State<QuizScreen> {
                       ? null
                       : () {
                           if (_currentIndex == widget.quizs.length - 1) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ResultScreen(
+                                    answers: _answers, quizs: widget.quizs),
+                              ),
+                            );
                           } else {
                             _answerState = [false, false, false, false];
                             _currentIndex += 1;
