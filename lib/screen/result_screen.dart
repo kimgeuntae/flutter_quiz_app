@@ -42,7 +42,20 @@ class ResultScreen extends StatelessWidget {
           width: width * 0.85,
           height: height * 0.5,
           child: Column(
-            children: [],
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: width * 0.048),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.deepPurple),
+                  color: Colors.white,
+                ),
+                width: width * 0.73,
+                height: height * 0.25,
+              ),
+            ],
           ),
         ),
       ),
