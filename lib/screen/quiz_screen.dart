@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app_test/widget/candidate.dart';
 
 import '../model/quiz.dart';
 
@@ -14,7 +15,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  List<int> _answers = [-1, -1, -1];
+  List<int> _answers = [-1, -1, -1, -1];
   List<bool> _answerState = [false, false, false, false];
   int _currentIndex = 0;
 
@@ -82,10 +83,48 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
           Expanded(child: Container()),
           Column(
-            children: [],
+            children: _buildCandidates(width, quiz),
           )
         ],
       ),
     );
+  }
+
+  List<Widget> _buildCandidates(double width, Quiz quiz) {
+    List<Widget> _children = [];
+    for (int i = 0; i < 4; i++) {
+      _children.add(
+        Candidate(
+          // 문항 index
+          index: i,
+          // 문제들
+          text: quiz.candidates[i],
+          width: width,
+          // 답
+          answerState: _answerState[i],
+          tap: () {
+            // 대답했는지 여부 체크
+            setState(() {
+              for (int j = 0; j < 4; j++) {
+                // 문항 index(i)랑 선택index(j)가 같을 경우
+                if (j == i) {
+                  _answerState[j] = true;
+                  // _currentIndex : 문제 번호
+                  _answers[_currentIndex] = j;
+                } else {
+                  _answerState[j] = false;
+                }
+              }
+            });
+          },
+        ),
+      );
+      _children.add(
+        Padding(
+          padding: EdgeInsets.all(width * 0.024),
+        ),
+      );
+    }
+    return _children;
   }
 }
