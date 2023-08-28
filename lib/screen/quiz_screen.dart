@@ -18,6 +18,7 @@ class _QuizScreenState extends State<QuizScreen> {
   List<int> _answers = [-1, -1, -1, -1];
   List<bool> _answerState = [false, false, false, false];
   int _currentIndex = 0;
+  SwiperController _controller = SwiperController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class _QuizScreenState extends State<QuizScreen> {
           width: width * 0.85,
           height: height * 0.5,
           child: Swiper(
+            controller: _controller,
             physics: const NeverScrollableScrollPhysics(),
             loop: false,
             itemCount: widget.quizs.length,
@@ -100,7 +102,16 @@ class _QuizScreenState extends State<QuizScreen> {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.deepPurple,
                   ),
-                  onPressed: () {},
+                  onPressed: _answers[_currentIndex] == -1 // 정답 선택전 초기 상태 : -1
+                      ? null
+                      : () {
+                          if (_currentIndex == widget.quizs.length - 1) {
+                          } else {
+                            _answerState = [false, false, false, false];
+                            _currentIndex += 1;
+                            _controller.next();
+                          }
+                        },
                   child: _currentIndex == widget.quizs.length - 1
                       ? Text('결과보기')
                       : Text('다음문제'),
