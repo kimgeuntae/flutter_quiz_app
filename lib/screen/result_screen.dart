@@ -84,7 +84,10 @@ class ResultScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.red,
                       ),
-                    )
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(width * 0.012),
+                    ),
                   ],
                 ),
               ),
