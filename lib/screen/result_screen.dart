@@ -74,6 +74,17 @@ class ResultScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Expanded(
+                      child: Container(),
+                    ),
+                    Text(
+                      '${score.toString()}/${quizs.length.toString()}',
+                      style: TextStyle(
+                        fontSize: width * 0.15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    )
                   ],
                 ),
               ),
