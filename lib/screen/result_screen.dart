@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_test/screen/home_screen.dart';
 
 import '../model/quiz.dart';
 
@@ -89,6 +90,34 @@ class ResultScreen extends StatelessWidget {
                       padding: EdgeInsets.all(width * 0.012),
                     ),
                   ],
+                ),
+              ),
+              Expanded(
+                child: Container(),
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: width * 0.048),
+                child: ButtonTheme(
+                  minWidth: width * 0.73,
+                  height: height * 0.05,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(),
+                        ),
+                      );
+                    },
+                    child: Text('홈으로 돌아가기'),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ],
