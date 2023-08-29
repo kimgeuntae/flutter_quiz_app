@@ -106,6 +106,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Row(
+                              children: [
+                                CircularProgressIndicator(),
+                                Padding(
+                                  padding: EdgeInsets.only(left: width * 0.036),
+                                ),
+                                Text('로딩중..'),
+                              ],
+                            ),
+                          ),
+                        );
                         _fetchQuizs().whenComplete(() {
                           return Navigator.push(
                             context,
