@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../model/api_adapter.dart';
 import '../model/quiz.dart';
 import 'quiz_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,23 +14,43 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Quiz> quizs = [
-    Quiz.fromMap({
-      'title': 'test1',
-      'candidates': ['a1', 'b1', 'c1', 'd1'],
-      'answer': 0
-    }),
-    Quiz.fromMap({
-      'title': 'test2',
-      'candidates': ['a2', 'b2', 'c2', 'd2'],
-      'answer': 0
-    }),
-    Quiz.fromMap({
-      'title': 'test3',
-      'candidates': ['a3', 'b3', 'c3', 'd3'],
-      'answer': 0
-    }),
-  ];
+  List<Quiz> quizs = [];
+  bool isLoading = false;
+
+  _fetchQuizs() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    final response = await http.get(Uri.parse('http://localhost:8000/quiz/3'));
+
+    if (response.statusCode == 200) {
+      setState(() {
+        quizs = parseQuizs(utf8.decode(response.bodyBytes));
+        isLoading = false;
+      });
+    } else {
+      throw Exception('failed to load data');
+    }
+  }
+
+  // List<Quiz> quizs = [
+  //   Quiz.fromMap({
+  //     'title': 'test1',
+  //     'candidates': ['a1', 'b1', 'c1', 'd1'],
+  //     'answer': 0
+  //   }),
+  //   Quiz.fromMap({
+  //     'title': 'test2',
+  //     'candidates': ['a2', 'b2', 'c2', 'd2'],
+  //     'answer': 0
+  //   }),
+  //   Quiz.fromMap({
+  //     'title': 'test3',
+  //     'candidates': ['a3', 'b3', 'c3', 'd3'],
+  //     'answer': 0
+  //   }),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +106,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => QuizScreen(quizs: quizs),
-                          ),
-                        );
+                        _fetchQuizs().whenComplete(() {
+                          return Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => QuizScreen(quizs: quizs),
+                            ),
+                          );
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.deepPurple,
